@@ -1,7 +1,7 @@
 // fetches built in Node method 'fs'
 var fs = require('fs');
 
-var input = fs.createReadStream('load_dept_emp.txt');
+var input = fs.createReadStream('load_dept_names.txt');
 
 // create the readline interface
 var rl = require('readline').createInterface({
@@ -13,7 +13,7 @@ var rl = require('readline').createInterface({
 // split the data into a workable array at each comma
 // splice off the last blank value in the array
 rl.on('line', function(line) {
-    line = line.replace(/'|\(|\)/g,'').split(',').splice(0,4);
+    line = line.replace(/'|\(|\)/g,'').split(',').splice(0,2);
     console.log(line);
     
     
