@@ -4,7 +4,6 @@ let fs = require('fs');
 
 let input = fs.createReadStream('load_employess.txt');
 
-
 // create the readline interface
 let rl = require('readline').createInterface({
    input: input,
@@ -22,7 +21,7 @@ rl.on('line', function(line) {
     let fname = line[2];
     let lname = line[3];
     
-    let employee = {id:id, firstName:fname, lastNme:lname}; 
+    let employee = id + fname + lname; 
     
     console.log(employee);
 
