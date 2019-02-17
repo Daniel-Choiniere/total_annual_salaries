@@ -21,7 +21,7 @@ rl.on('line', function(line) {
     let fname = line[2];
     let lname = line[3];
     
-    let employee = id + fname + lname; 
+    let employee = (id + fname + lname); 
     
     console.log(employee);
 

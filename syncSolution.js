@@ -12,8 +12,12 @@ let employeeDept = fs.readFileSync('load_dept_emp.txt', 'utf8');
 let departments = fs.readFileSync('load_dept_names.txt', 'utf8');
 // console.log(departments);
 
-let empArray = employess.replace(/'|\(|\)/g,'');
+let empArray = employess.replace(/'|\(|\)/g,'').split(',');
 
 
+let ids = [];
+for (let i=0; i<empArray.length; i+5) {
+    ids.push(empArray[i]); 
+}
 
-console.log(typeof empArray);
+console.log(ids);
