@@ -5,10 +5,11 @@ var employeeId = [ [100, 102, 103, 104, 105], [200, 201, 202, 203, 204, 205], [3
 var salaries = [ [85000, 85000, 95000, 105000, 150000], [65000, 65000, 75000, 75000, 85000, 95000], [55000, 65000, 75000, 95000], [55000, 65000, 75000] ];
 var employeeName = [ ["Ruth", "Sofía", "Elias", "Mathias", "Arnell"], ["Kai", "Isaiah", "Amare", "Nadia", "Nolan", "Jason"], ["Alejandro", "Steven", "Brodi", "Mary"], ["Jose", "Nia", "Lee"] ];
 
+console.log(business);
 for (var i = 0; i < departmentId.length; i++) {
     console.log(`Department ${departmentId[i]} - ${departments[i]}:`);
     
     for (var j=0; j < salaries[i].length; j++) {
-        console.log(`Employee ID: ${employeeId[i][j]} Name: ${employeeName[i][j]} Salary: ${salaries[i][j]}` )
+        console.log(` ${j+1}: Employee ID: ${employeeId[i][j]}, Name: ${employeeName[i][j]}, Salary: ${salaries[i][j]}` );
     }
 }
