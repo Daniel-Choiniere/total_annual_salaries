@@ -12,9 +12,12 @@ var rl = require('readline').createInterface({
 // parse through the data line by line getting rid of unnecessary characters
 // split the data into a workable array at each comma
 // splice off the last blank value in the array
+var ids = [];
+
 rl.on('line', function(line) {
     line = line.replace(/'|\(|\)/g,'').split(',').splice(0,2);
-    console.log(line);
-    
+    ids.push(line[0]);
+    console.log(ids);
     
 });
+

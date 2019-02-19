@@ -1,3 +1,4 @@
+// gets the data from all files in one function 
 let fs = require('fs');
 
 let employess = fs.readFileSync('load_employess.txt','utf8');
