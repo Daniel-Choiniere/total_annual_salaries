@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+let departments = [];
+
 fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
     if (err) throw err;
     
@@ -10,10 +12,11 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
     
     for (let i=0; i<loadDeptArray.length; i++) {
         if (loadDeptArray[i].slice(28, 32) === "9999") {
-            console.log(loadDeptArray[i]);
+            // departments += loadDeptArray
+            // console.log(loadDeptArray[i]);
         }
     }
-    // console.log(loadDeptArray[0]);
+    console.log(loadDeptArray[0]);
 });
 
 
