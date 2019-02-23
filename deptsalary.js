@@ -3,7 +3,7 @@ const fs = require('fs');
 // Step 1: Create all single and multi dimnensional arrays as empty arrays (intially)
 //     -push single string data/elements into an array as a single element
 //     -push array data into an array to form multi dimensional arrays
-    
+
 // single dimensional arrays
 var departmentID = [];
 var departments = [];
@@ -31,11 +31,13 @@ fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
         employeeName.push([]);
         salaries.push([]);
     }
+
     // console.log(departmentID);
     // console.log(departments);
     // console.log(employeeID);
     // console.log(employeeName);
     // console.log(salaries);
+
 });
 
 fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
@@ -45,17 +47,63 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
     var empDataArray = empDataClean.split('\n');
     
         for (let i=0; i<empDataArray.length; i++) {
-            // if these four charatcers at this position match 9999 then...
+            // if these four characters at this position match 9999 then...
         if (empDataArray[i].slice(28, 32) === "9999") {
-            // employeeID[departmentID.indexOf(empDataArray[i].slice(7,11))].push(empDataArray[i].slice(2, 6));
+            employeeID[departmentID.indexOf(empDataArray[i].slice(8,12))]
+            .push(empDataArray[i].slice(1, 6));
             
-            console.log(empDataArray[i].slice(8,12));
-            console.log(empDataArray[i].slice(1, 6));
+            // console.log(empDataArray[i].slice(8,12));
+            // console.log(empDataArray[i].slice(1, 6));
         }
-        // console.log(employeeID);
     }
-    
-    // console.log(empDataArray[0]);
-    
+    console.log(employeeID);
 });
+
+
+// // fs.readFile('load_employess.txt', 'utf8', function(err, data) {
+// //     if (err) throw err;
     
+// //     var employeeDataClean= data.replace(/INSERT INTO `dept_emp` VALUES /g, "");
+// //     var employeeDataArray = employeeDataClean.split('\n');
+
+    
+// //         for (let i=0; i<employeeDataArray.length; i++) {
+   
+// //         let escapedName = employeeDataArray[i].slice(20,-18).replace(/,|\(|\)|\'/g,'');
+// //         let empID = employeeDataArray[i].slice(1, 6);
+        
+// //         employeeName[departmentID.indexOf(escapedName)].push(empID);
+            
+// //             // employeeName[departmentID.indexOf(employeeDataArray[i].slice(20,-18))].push(employeeDataArray[i].slice(1, 6));
+            
+       
+        
+// //         // console.log(escapedName);
+// //         // console.log(empID);
+// //         // console.log(employeeDataArray[i].slice(20,-18));
+// //         // console.log(employeeDataArray[i].slice(1, 6));
+            
+            
+// //     }
+// //         //  console.log(employeeName);
+
+// // });
+
+fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
+    if (err) throw err;
+    
+    var salaryDataClean= data.replace(/INSERT INTO `dept_emp` VALUES /g, "");
+    var salaryDataArray = salaryDataClean.split('\n');
+    
+        for (let i=0; i<salaryDataArray.length; i++) {
+            // if these four charatcers at this position match 9999 then...
+            if (salaryDataArray[i].slice(28, 32) === "9999") {
+            // salaries[departmentID.indexOf(salaryDataArray[i].slice(8,12))].push(salaryDataArray[i].slice(1, 6));
+            
+            
+            //salaryDataArray[i].slice(1,6));
+            // console.log(salaryDataArray[i].slice(7, 12));
+            }
+    }
+    console.log(salaries);
+});
