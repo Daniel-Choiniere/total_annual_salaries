@@ -32,7 +32,7 @@ fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
         salaries.push([]);
     }
 
-    // console.log(departmentID);
+    console.log(departmentID);
     // console.log(departments);
     // console.log(employeeID);
     // console.log(employeeName);
@@ -48,15 +48,14 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
     
         for (let i=0; i<empDataArray.length; i++) {
             // if these four characters at this position match 9999 then...
-        if (empDataArray[i].slice(28, 32) === "9999") {
-            employeeID[departmentID.indexOf(empDataArray[i].slice(8,12))]
-            .push(empDataArray[i].slice(1, 6));
-            
-            // console.log(empDataArray[i].slice(8,12));
-            // console.log(empDataArray[i].slice(1, 6));
+            if (empDataArray[i].slice(28, 32) === "9999") {
+                
+                // Finds the index of the current iterated department ID (empDataArray[i]) equal to the ID in the already generated departmentID array. Returns this index as a parameter for the position to push the current iterated employee ID into the respective department array in the employeeID multidimensional array.  
+                employeeID[departmentID.indexOf(empDataArray[i].slice(8,12))]
+                .push(empDataArray[i].slice(1, 6));
+            }
         }
-    }
-    console.log(employeeID);
+    // console.log(employeeID);
 });
 
 
@@ -94,16 +93,26 @@ fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
     
     var salaryDataClean= data.replace(/INSERT INTO `dept_emp` VALUES /g, "");
     var salaryDataArray = salaryDataClean.split('\n');
-    
+        
+        // iterating through the newly created salaryDataArray of all salary data
         for (let i=0; i<salaryDataArray.length; i++) {
-            // if these four charatcers at this position match 9999 then...
-            if (salaryDataArray[i].slice(28, 32) === "9999") {
-            // salaries[departmentID.indexOf(salaryDataArray[i].slice(8,12))].push(salaryDataArray[i].slice(1, 6));
-            
-            
-            //salaryDataArray[i].slice(1,6));
-            // console.log(salaryDataArray[i].slice(7, 12));
-            }
+            // if these four charatcers at this position in a line of salaryArrayData match 9999 then...
+            if (salaryDataArray[i].slice(27, 31) === "9999") {
+                // console.log("salary empID: " + salaryDataArray[i].slice(1, 6));
+                
+                // iterate through employeeID array, puts us on first element of array
+                for (let j=0; j<employeeID.length; j++) {
+                    // iterate through the inner EmployeeID array
+                    for (let k=0; k<employeeID[j].length; k++) {
+                
+                        if (salaryDataArray[i].slice(1,6) == employeeID[j][k]) {
+                            // console.log("!!!!! MATCH !!!!!");
+                            salaries.push(salaryDataArray[i].slice(1,6));
+                        }
+                    }
+                }
+                
+        }
     }
-    console.log(salaries);
+    // console.log(salaries);
 });
