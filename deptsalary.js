@@ -86,34 +86,51 @@ fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
                 
         }
     }
-    console.log(salaries);
+    // console.log(salaries);
 });
 
 
-// fs.readFile('load_employess.txt', 'utf8', function(err, data) {
-//     if (err) throw err;
-    
-//     var employeeDataClean= data.replace(/INSERT INTO `dept_emp` VALUES /g, "");
-//     var employeeDataArray = employeeDataClean.split('\n');
+fs.readFile('load_employess.txt', 'utf8', function(err, data) {
+    if (err) throw err;
 
-    
-//         for (let i=0; i<employeeDataArray.length; i++) {
-  
-//             var empID = employeeDataArray[i].slice(1, 6);
-//             var escapedName = employeeDataArray[i].slice(20,-18).replace(/\(|\)|\'/g,'');
-//             var superEscaped = escapedName.replace(/\,/g, ' ');
-            
-//             // console.log(superEscaped);
-//             // employeeName.push(superEscaped);
-                
-//                 employeeName[departmentID.indexOf(employeeDataArray[i].slice(1, 6))].push();
-                
-//             // console.log(escapedName);
-//             // console.log(empID);
-//             // console.log(employeeDataArray[i].slice(20,-18));
-//             // console.log(employeeDataArray[i].slice(1, 6));
-                
-//     }
-//          console.log(employeeName);
+    var nameSplit, nameSplitId, joinedNames;
 
-// });
+    var nameDataClean = data.replace(/INSERT INTO `employees` VALUES /g, "");
+    var nameDataArray = nameDataClean.split('\n');
+
+    for (var i = 0; i < nameDataArray.length; i++) {
+
+        nameSplit = nameDataArray[i].split(',');
+        nameSplitId = nameSplit[0].replace(/\(/g, "");
+
+        // console.log("nameSplit");
+        // console.log(nameSplit);
+
+        // console.log("nameSplitId");
+        // console.log(nameSplitId);
+
+        // console.log("nameSplit[2]");
+        // console.log(nameSplit[2]);
+
+        for (var j = 0; j < employeeID.length; j++) {
+
+            for (var k = 0; k < employeeID[j].length; k++) {
+
+                if (employeeID[j][k] == nameSplitId) {
+                    //["a", "b", "c", "d"].slice(1,3).join("-") //b-c 
+                    // employeeName[j].push(nameSplit.slice(2,4).join(" ")
+
+                    // console.log(nameSplit[2].replace(/'/g, ""), nameSplit[3].replace(/'/g, ""));
+
+                    joinedNames = nameSplit[2].replace(/'/g, "") + " " + nameSplit[3].replace(/'/g, "");
+                    employeeName[j].push(joinedNames);
+
+                }
+            }
+        }
+    }
+    
+    console.log(employeeName);
+
+});
+
