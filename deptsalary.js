@@ -32,7 +32,7 @@ fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
         salaries.push([]);
     }
 
-    console.log(departmentID);
+    // console.log(departmentID);
     // console.log(departments);
     // console.log(employeeID);
     // console.log(employeeName);
@@ -50,43 +50,13 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
             // if these four characters at this position match 9999 then...
             if (empDataArray[i].slice(28, 32) === "9999") {
                 
-                // Finds the index of the current iterated department ID (empDataArray[i]) equal to the ID in the already generated departmentID array. Returns this index as a parameter for the position to push the current iterated employee ID into the respective department array in the employeeID multidimensional array.  
-                employeeID[departmentID.indexOf(empDataArray[i].slice(8,12))]
-                .push(empDataArray[i].slice(1, 6));
+                // Finds the index of the current iterated department ID at the sliced position in the empDataArray data array equal to the ID in the already generated departmentID array. Returns this index as a parameter for the position to push the current iterated employee ID into the respective department array in the employeeID multidimensional array.  
+                employeeID[departmentID.indexOf(empDataArray[i].slice(8,12))].push(empDataArray[i].slice(1, 6));
             }
         }
     // console.log(employeeID);
 });
 
-
-// // fs.readFile('load_employess.txt', 'utf8', function(err, data) {
-// //     if (err) throw err;
-    
-// //     var employeeDataClean= data.replace(/INSERT INTO `dept_emp` VALUES /g, "");
-// //     var employeeDataArray = employeeDataClean.split('\n');
-
-    
-// //         for (let i=0; i<employeeDataArray.length; i++) {
-   
-// //         let escapedName = employeeDataArray[i].slice(20,-18).replace(/,|\(|\)|\'/g,'');
-// //         let empID = employeeDataArray[i].slice(1, 6);
-        
-// //         employeeName[departmentID.indexOf(escapedName)].push(empID);
-            
-// //             // employeeName[departmentID.indexOf(employeeDataArray[i].slice(20,-18))].push(employeeDataArray[i].slice(1, 6));
-            
-       
-        
-// //         // console.log(escapedName);
-// //         // console.log(empID);
-// //         // console.log(employeeDataArray[i].slice(20,-18));
-// //         // console.log(employeeDataArray[i].slice(1, 6));
-            
-            
-// //     }
-// //         //  console.log(employeeName);
-
-// // });
 
 fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
     if (err) throw err;
@@ -107,12 +77,43 @@ fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
                 
                         if (salaryDataArray[i].slice(1,6) == employeeID[j][k]) {
                             // console.log("!!!!! MATCH !!!!!");
-                            salaries.push(salaryDataArray[i].slice(1,6));
+                            
+                            salaries[j].push(salaryDataArray[i].slice(7, 12));
+                 
                         }
                     }
                 }
                 
         }
     }
-    // console.log(salaries);
+    console.log(salaries);
 });
+
+
+// fs.readFile('load_employess.txt', 'utf8', function(err, data) {
+//     if (err) throw err;
+    
+//     var employeeDataClean= data.replace(/INSERT INTO `dept_emp` VALUES /g, "");
+//     var employeeDataArray = employeeDataClean.split('\n');
+
+    
+//         for (let i=0; i<employeeDataArray.length; i++) {
+  
+//             var empID = employeeDataArray[i].slice(1, 6);
+//             var escapedName = employeeDataArray[i].slice(20,-18).replace(/\(|\)|\'/g,'');
+//             var superEscaped = escapedName.replace(/\,/g, ' ');
+            
+//             // console.log(superEscaped);
+//             // employeeName.push(superEscaped);
+                
+//                 employeeName[departmentID.indexOf(employeeDataArray[i].slice(1, 6))].push();
+                
+//             // console.log(escapedName);
+//             // console.log(empID);
+//             // console.log(employeeDataArray[i].slice(20,-18));
+//             // console.log(employeeDataArray[i].slice(1, 6));
+                
+//     }
+//          console.log(employeeName);
+
+// });
