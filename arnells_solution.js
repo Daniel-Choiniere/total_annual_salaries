@@ -60,7 +60,7 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
 });
 
 
-fs.readFile('load_salaries.txt', 'utf8', function(err, data) {
+fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
     if (err) throw err;
 
     // Salary arrays
@@ -95,7 +95,7 @@ fs.readFile('load_salaries.txt', 'utf8', function(err, data) {
 });
 
 
-fs.readFile('load_employee.txt', 'utf8', function(err, data) {
+fs.readFile('load_employess.txt', 'utf8', function(err, data) {
     if (err) throw err;
 
     var nameSplit, nameSplitId, joinedNames;
@@ -107,15 +107,6 @@ fs.readFile('load_employee.txt', 'utf8', function(err, data) {
 
         nameSplit = nameDataArray[i].split(',');
         nameSplitId = nameSplit[0].replace(/\(/g, "");
-
-        // console.log("nameSplit");
-        // console.log(nameSplit);
-
-        // console.log("nameSplitId");
-        // console.log(nameSplitId);
-
-        // console.log("nameSplit[2]");
-        // console.log(nameSplit[2]);
 
         for (var j = 0; j < employeeId.length; j++) {
 
@@ -136,110 +127,6 @@ fs.readFile('load_employee.txt', 'utf8', function(err, data) {
     }
 
 
-    // console.log("employeeName");
-    // console.log(employeeName);
-
-    // console.log(employeeName[0][0]);
-
-
-
-
+    
+    console.log(employeeName);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// fs.readFile('load_employee.txt', 'utf8', function(err, data) {
-// if (err) throw err;
-
-// var nameSplit;
-// var currentNameSplitLine;
-
-// var nameDataClean = data.replace(/INSERT INTO `employees` VALUES /g, "");
-// var nameDataArray = nameDataClean.split('\n');
-
-// for (var i = 0; i < nameDataArray.length; i++) {
-// nameSplit = nameDataArray[i].split(',');
-// currentNameSplitLine = nameSplit[i].replace(/\(/g,"");
-// data.replace(/INSERT INTO `dept_emp` VALUES /g, "");
-
-// console.log(currentNameSplitLine);
-// console.log("currentNameSplitLine");
-
-// for (var j = 0; j < employeeId.length; j++) {
-
-// for (var k = 0; k < employeeId[j].length; k++) {
-
-// console.log("employeeId[j][k]");
-// console.log(employeeId[j][k]);
-
-
-// // if (employeeId[j][k] == nameSplit[0].replace(/\(/g,"")) {
-// // employeeName[j][k].push(nameSplit[2]+" "+nameSplit[3]);
-
-// // }
-
-// }
-// }
-// }
-
-
-// console.log("employeeName");
-// console.log(employeeName);
-// // console.log();
-// // console.log(nameSplit[2]);
-// // console.log(nameSplit[3]);
-
-
-// });
-
-
-
-
-
-
-
-
-
-
-// // Process 'load_salaries.txt' file
-// fs.readFile('load_salaries.txt', 'utf8', function(err, data) {
-// if (err) throw err;
-
-// salaryDataClean = data.replace(/INSERT INTO `salaries` VALUES /g, "");
-// salaryDataArray = salaryDataClean.split('\n');
-
-// // salaries [ [], [], [], [], [], [], [], [] ]
-
-// for (var i = 0; i < salaryDataArray.length; i++) {
-
-// if (salaryDataArray[i].slice(27, 31) == '9999') {
-// for (var j = 0; j < employeeId.length; j++) {
-// for (var k = 0; k < employeeId[j].length; k++) {
-// if (employeeId[j][k] == salaryDataArray[i].slice(1, 6)) {
-
-// salaries[j].push(salaryDataArray[i].slice(7, 12));
-
-// }
-
-// }
-
-// }
-
-// }
-
-// }
-
-// console.log(salaries);
-
-// });
