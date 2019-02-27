@@ -131,15 +131,15 @@ fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
 
 
 
-// departmentID = [ 'd001','d002','d003','d004','d005','d006','d007','d008','d009' ];
+departmentID = [ 'd001','d002','d003','d004','d005','d006','d007','d008','d009' ];
 
-// departments = [ 'Marketing','Finance','Human Resources','Production', 'Development','Quality Management','Sales','Research','Customer Service' ];
+departments = [ 'Marketing','Finance','Human Resources','Production', 'Development','Quality Management','Sales','Research','Customer Service' ];
 
-// employeeID = [ [ '10017' ],[],[ '10005', '10013' ],[ '10003', '10004', '10018', '10020' ],[ '10001', '10006', '10012', '10014' ],[ '10009', '10010' ],[ '10002', '10016' ],[ '10007', '10019' ], [] ];
+employeeID = [ [ '10017' ],[],[ '10005', '10013' ],[ '10003', '10004', '10018', '10020' ],[ '10001', '10006', '10012', '10014' ],[ '10009', '10010' ],[ '10002', '10016' ],[ '10007', '10019' ], [] ];
 
-// employeeName = [ [ 'Cristinel Bouloucos' ],[],[ 'Kyoichi Maliniak', 'Eberhardt Terkki' ],[ 'Parto Bamford','Chirstian Koblick','Kazuhide Peha','Mayuko Warwick' ],[ 'Georgi Facello','Anneke Preusig', 'Patricio Bridgland','Berni Genin' ],[ 'Sumant Peac', 'Duangkaew Piveteau' ],[ 'Bezalel Simmel', 'Kazuhito Cappelletti' ],[ 'Tzvetan Zielinski', 'Lillian Haddadi' ],[] ];
+employeeName = [ [ 'Cristinel Bouloucos' ],[],[ 'Kyoichi Maliniak', 'Eberhardt Terkki' ],[ 'Parto Bamford','Chirstian Koblick','Kazuhide Peha','Mayuko Warwick' ],[ 'Georgi Facello','Anneke Preusig', 'Patricio Bridgland','Berni Genin' ],[ 'Sumant Peac', 'Duangkaew Piveteau' ],[ 'Bezalel Simmel', 'Kazuhito Cappelletti' ],[ 'Tzvetan Zielinski', 'Lillian Haddadi' ],[] ];
 
-// salaries = [ [ '99651' ],[],[ '94692', '68901' ],[ '43311', '74057', '84672', '47017' ],[ '88958', '59755', '54423', '60598' ],[ '94409', '80324' ],[ '72527', '77935' ],[ '88070', '50032' ],[] ];
+salaries = [ [ '99651' ],[],[ '94692', '68901' ],[ '43311', '74057', '84672', '47017' ],[ '88958', '59755', '54423', '60598' ],[ '94409', '80324' ],[ '72527', '77935' ],[ '88070', '50032' ],[] ];
 
 
 
@@ -150,13 +150,13 @@ for (var i = 0; i < departmentID.length; i++) {
     console.log(`Department ${departmentID[i]} - ${departments[i]}:`);
     
   let eachDept = 0;
-    
+ 
     for (var j=0; j < salaries[i].length; j++) {
         
         console.log(` ${j+1}: Employee ID: ${employeeID[i][j]}, Name: ${employeeName[i][j]}, Salary: ${salaries[i][j]}` );
     
-        eachDept += salaries[i][j];
-        totalSalary += salaries[i][j];
+        eachDept += +salaries[i][j];
+        totalSalary += +salaries[i][j];
     
     }
     console.log(`The total salary for ${departments[i]} is: ${eachDept}`);
