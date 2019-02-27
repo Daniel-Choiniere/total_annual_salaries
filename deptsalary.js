@@ -32,8 +32,8 @@ fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
         salaries.push([]);
     }
 
-    // console.log(departmentID);
-    // console.log(departments);
+    console.log(departmentID);
+    console.log(departments);
     // console.log(employeeID);
     // console.log(employeeName);
     // console.log(salaries);
@@ -56,7 +56,7 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
                 .push(empDataArray[i].slice(1, 6));
             }
         }
-    // console.log(employeeID);
+    console.log(employeeID);
 });
 
 
@@ -114,10 +114,8 @@ fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
                 
                         if (salaryDataArray[i].slice(1,6) == employeeID[j][k]) {
                             // console.log("!!!!! MATCH !!!!!");
-                            
-                            
-                            // salaries[employeeID[j][k].indexOf(salaryDataArray[i].slice(1,6))]
-                            // .push(salaryDataArray[i].slice(7,12));
+
+                            salaries[j].push(salaryDataArray[i].slice(7, 12));
                  
                         }
                     }
@@ -125,6 +123,16 @@ fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
                 
         }
     }
-    // console.log(salaries);
+    console.log(salaries);
 });
 
+
+departmentID = [ 'd001','d002','d003','d004','d005','d006','d007','d008','d009' ];
+
+departments = [ 'Marketing','Finance','Human Resources','Production', 'Development','Quality Management','Sales','Research','Customer Service' ];
+
+employeeID = [ [ '10017' ],[],[ '10005', '10013' ],[ '10003', '10004', '10018', '10020' ],[ '10001', '10006', '10012', '10014' ],[ '10009', '10010' ],[ '10002', '10016' ],[ '10007', '10019' ], [] ];
+
+employeeName = [ [ 'Cristinel Bouloucos' ],[],[ 'Kyoichi Maliniak', 'Eberhardt Terkki' ],[ 'Parto Bamford','Chirstian Koblick','Kazuhide Peha','Mayuko Warwick' ],[ 'Georgi Facello','Anneke Preusig', 'Patricio Bridgland','Berni Genin' ],[ 'Sumant Peac', 'Duangkaew Piveteau' ],[ 'Bezalel Simmel', 'Kazuhito Cappelletti' ],[ 'Tzvetan Zielinski', 'Lillian Haddadi' ],[] ];
+
+salaries = [ [ '99651' ],[],[ '94692', '68901' ],[ '43311', '74057', '84672', '47017' ],[ '88958', '59755', '54423', '60598' ],[ '94409', '80324' ],[ '72527', '77935' ],[ '88070', '50032' ],[] ];
