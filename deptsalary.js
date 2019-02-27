@@ -32,8 +32,8 @@ fs.readFile('load_dept_names.txt', 'utf8', function(err, data) {
         salaries.push([]);
     }
 
-    console.log(departmentID);
-    console.log(departments);
+    // console.log(departmentID);
+    // console.log(departments);
     // console.log(employeeID);
     // console.log(employeeName);
     // console.log(salaries);
@@ -47,7 +47,7 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
     var empDataClean= data.replace(/INSERT INTO `dept_emp` VALUES /g, "");
     var empDataArray = empDataClean.split('\n');
     
-        for (let i=0; i<empDataArray.length; i++) {
+        for (var i=0; i<empDataArray.length; i++) {
             // if these four characters at this position match 9999 then...
             if (empDataArray[i].slice(28, 32) === "9999") {
                 
@@ -56,7 +56,7 @@ fs.readFile('load_dept_emp.txt', 'utf8', function(err, data) {
                 .push(empDataArray[i].slice(1, 6));
             }
         }
-    console.log(employeeID);
+    // console.log(employeeID);
 });
 
 
@@ -78,10 +78,6 @@ fs.readFile('load_employess.txt', 'utf8', function(err, data) {
             for (var k = 0; k < employeeID[j].length; k++) {
 
                 if (employeeID[j][k] == nameSplitId) {
-                    //["a", "b", "c", "d"].slice(1,3).join("-") //b-c 
-                    // employeeName[j].push(nameSplit.slice(2,4).join(" ")
-
-                    // console.log(nameSplit[2].replace(/'/g, ""), nameSplit[3].replace(/'/g, ""));
 
                     joinedNames = nameSplit[2].replace(/'/g, "") + " " + nameSplit[3].replace(/'/g, "");
                     employeeName[j].push(joinedNames);
@@ -91,12 +87,19 @@ fs.readFile('load_employess.txt', 'utf8', function(err, data) {
         }
     }
     
-    console.log(employeeName);
+    // console.log(employeeName);
+    
+        for (var i=0; i<employeeName.length; i++) {
+        for (var j=0; j<employeeName[i].length; j++) {
+            // console.log(employeeName[i][j]);
+        }
+    }
 });
-
+    
 
 fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
     if (err) throw err;
+    
     
     var salaryDataClean= data.replace(/INSERT INTO `dept_emp` VALUES /g, "");
     var salaryDataArray = salaryDataClean.split('\n');
@@ -123,16 +126,41 @@ fs.readFile('load_salaries1.txt', 'utf8', function(err, data) {
                 
         }
     }
-    console.log(salaries);
+    // console.log(salaries);
 });
 
 
-departmentID = [ 'd001','d002','d003','d004','d005','d006','d007','d008','d009' ];
 
-departments = [ 'Marketing','Finance','Human Resources','Production', 'Development','Quality Management','Sales','Research','Customer Service' ];
+// departmentID = [ 'd001','d002','d003','d004','d005','d006','d007','d008','d009' ];
 
-employeeID = [ [ '10017' ],[],[ '10005', '10013' ],[ '10003', '10004', '10018', '10020' ],[ '10001', '10006', '10012', '10014' ],[ '10009', '10010' ],[ '10002', '10016' ],[ '10007', '10019' ], [] ];
+// departments = [ 'Marketing','Finance','Human Resources','Production', 'Development','Quality Management','Sales','Research','Customer Service' ];
 
-employeeName = [ [ 'Cristinel Bouloucos' ],[],[ 'Kyoichi Maliniak', 'Eberhardt Terkki' ],[ 'Parto Bamford','Chirstian Koblick','Kazuhide Peha','Mayuko Warwick' ],[ 'Georgi Facello','Anneke Preusig', 'Patricio Bridgland','Berni Genin' ],[ 'Sumant Peac', 'Duangkaew Piveteau' ],[ 'Bezalel Simmel', 'Kazuhito Cappelletti' ],[ 'Tzvetan Zielinski', 'Lillian Haddadi' ],[] ];
+// employeeID = [ [ '10017' ],[],[ '10005', '10013' ],[ '10003', '10004', '10018', '10020' ],[ '10001', '10006', '10012', '10014' ],[ '10009', '10010' ],[ '10002', '10016' ],[ '10007', '10019' ], [] ];
 
-salaries = [ [ '99651' ],[],[ '94692', '68901' ],[ '43311', '74057', '84672', '47017' ],[ '88958', '59755', '54423', '60598' ],[ '94409', '80324' ],[ '72527', '77935' ],[ '88070', '50032' ],[] ];
+// employeeName = [ [ 'Cristinel Bouloucos' ],[],[ 'Kyoichi Maliniak', 'Eberhardt Terkki' ],[ 'Parto Bamford','Chirstian Koblick','Kazuhide Peha','Mayuko Warwick' ],[ 'Georgi Facello','Anneke Preusig', 'Patricio Bridgland','Berni Genin' ],[ 'Sumant Peac', 'Duangkaew Piveteau' ],[ 'Bezalel Simmel', 'Kazuhito Cappelletti' ],[ 'Tzvetan Zielinski', 'Lillian Haddadi' ],[] ];
+
+// salaries = [ [ '99651' ],[],[ '94692', '68901' ],[ '43311', '74057', '84672', '47017' ],[ '88958', '59755', '54423', '60598' ],[ '94409', '80324' ],[ '72527', '77935' ],[ '88070', '50032' ],[] ];
+
+
+
+let totalSalary = 0;
+
+
+for (var i = 0; i < departmentID.length; i++) {
+    console.log(`Department ${departmentID[i]} - ${departments[i]}:`);
+    
+  let eachDept = 0;
+    
+    for (var j=0; j < salaries[i].length; j++) {
+        
+        console.log(` ${j+1}: Employee ID: ${employeeID[i][j]}, Name: ${employeeName[i][j]}, Salary: ${salaries[i][j]}` );
+    
+        eachDept += salaries[i][j];
+        totalSalary += salaries[i][j];
+    
+    }
+    console.log(`The total salary for ${departments[i]} is: ${eachDept}`);
+}
+console.log('\n')
+console.log("Total salary " + totalSalary);
+
